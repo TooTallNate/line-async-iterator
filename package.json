@@ -1,0 +1,11 @@
+{
+  "name": "line-async-iterator",
+  "version": "1.0.0",
+  "description": "Async Iterator for every line of a Readable Stream",
+  "main": "index.js",
+  "dependencies": {
+    "stream-async-iterator": "^1.0.0"
+  },
+  "author": "Nathan Rajlich <n@n8.io>",
+  "license": "MIT"
+}
