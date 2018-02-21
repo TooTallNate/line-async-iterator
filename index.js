@@ -5,7 +5,7 @@ module.exports = function createLineIterator(stream) {
   let done = false;
   let leftover = '';
   const iterator = createStreamIterator(stream);
-  const delimiter = stream.isTTY ? '\r' : /\r?\n/;
+  const delimiter = stream.isRaw ? '\r' : /\r?\n/;
 
   async function next() {
     if (lines.length > 0) {
@@ -13,9 +13,21 @@ module.exports = function createLineIterator(stream) {
     }
     let value;
     ({ done, value } = await iterator.next());
+
+    if (stream.isRaw && value && value.length === 1) {
+      if (value[0] === 3) {
+        // Map Ctrl+C to SIGINT
+        process.kill(process.pid, 'SIGINT');
+        value = '';
+      } else if (value[0] === 4) {
+        // Map Ctrl+D to the stream's "end" event
+        stream.emit('end');
+        value = '';
+      }
+    }
+
     lines.push(...(leftover + (value || '')).split(delimiter));
     leftover = done ? null : lines.pop();
-    //console.log({ lines, leftover });
     return next();
   }
 
