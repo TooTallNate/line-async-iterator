@@ -18,5 +18,9 @@ module.exports = function createLineIterator(stream) {
     return next();
   }
 
-  return { next };
+  const it = { next };
+  if (Symbol.asyncIterator) {
+    it[Symbol.asyncIterator] = () => it;
+  }
+  return it;
 }
