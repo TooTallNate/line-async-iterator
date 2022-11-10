@@ -2,10 +2,16 @@
   "name": "line-async-iterator",
   "version": "2.1.0",
   "description": "Async Iterator for every line of a Readable Stream",
-  "main": "index.js",
-  "dependencies": {
-    "stream-async-iterator": "^1.1.0"
-  },
+  "main": "dist/index.js",
+  "types": "dist/index.d.ts",
   "author": "Nathan Rajlich <n@n8.io>",
-  "license": "MIT"
+  "license": "MIT",
+  "scripts": {
+    "build": "tsc",
+    "prepublishOnly": "yarn build"
+  },
+  "devDependencies": {
+    "@types/node": "^18.11.9",
+    "typescript": "^4.8.4"
+  }
 }
