@@ -1,6 +1,6 @@
 {
   "name": "line-async-iterator",
-  "version": "5.0.0",
+  "version": "5.0.1",
   "description": "Async Iterator for every line of a Readable Stream",
   "main": "dist/index.js",
   "types": "dist/index.d.ts",
