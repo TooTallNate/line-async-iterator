@@ -1,7 +1,7 @@
 import tty from 'tty';
 import { Readable } from 'stream';
 
-export default async function* createLineIterator(
+export async function* createLineIterator(
 	stream: Readable | tty.ReadStream
 ) {
 	let leftover = '';
