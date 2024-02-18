@@ -16,5 +16,5 @@ export async function* createLineIterator(
 		}
 	}
 
-	yield leftover;
+	if (leftover) yield leftover;
 }
